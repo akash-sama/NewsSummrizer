@@ -22,28 +22,26 @@ def fetch_news(topic):
         return None
 
 
-def generate_report_with_llm(topic, articles):
+def generate(topic, articles):
     """Generates a concise summary based on multiple articles using a language model."""
     descriptions = '. '.join(
         [f"{article['title']}: {article['description']}" for article in articles if article['description']])
-    prompt = f"Make a concise summary on the latest developments or news on {topic} and incorporate the following article summaries: {descriptions}"
+    prompt = f"Make a concise summary on the latest developments or latest news on {topic} and incorporate the following article summaries: {descriptions}"
 
-    # Assume using a language model for summarization
     genai.configure(api_key=GOOGLE_API_KEY)
     model = genai.GenerativeModel('gemini-1.5-flash')
     response = model.generate_content(prompt)
     text_summary = response.text
 
-    # Convert Markdown to plain text
     text_summary = text_summary.replace('## ', '').replace('\n\n', '\n').replace('*', '')
     return text_summary
 
 
 def summarize(topic):
-    """ Summarizes news based on a topic and displays it in JSON format. """
+    """ displays it in JSON format for the flask we are going to make """
     articles = fetch_news(topic)
     if articles:
-        report = generate_report_with_llm(topic, articles)
+        report = generate(topic, articles)
         sources = [{'title': article['title'], 'url': article['url']} for article in articles]
         final_summary = {
             "topic": topic,
@@ -57,5 +55,5 @@ def summarize(topic):
 
 if __name__ == "__main__":
     print(summarize("Gen Ai in india"))
-    #print(
+    #print(summarize("football")
 
