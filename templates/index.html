@@ -1,10 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Summary</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
 </head>
 <body>
-$END$
+    <div class="container">
+        <h1>News Search Agent</h1>
+        <form id="summarizeForm">
+            <input type="text" id="topic" name="topic" placeholder="Enter topic..." required>
+            <button type="submit">Give Result!</button>
+        </form>
+        <div id="summaryContainer">
+            {% if summary %}
+            <h2>The latest news about {{ topic }} is...</h2>
+            <p>{{ summary }}</p>
+            {% if sources %}
+            <div class="sources">
+                <h3>Sources</h3>
+                <ul>
+                    {% for source in sources %}
+                    <li><a href="{{ source.url }}">{{ source.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
 </body>
 </html>

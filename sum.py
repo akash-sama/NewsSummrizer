@@ -1,6 +1,6 @@
-
-GOOGLE_API_KEY = 'AIzaSyAZBo5jtrJFGb32Qf-gRadD3v7HRSM73HY'
-NEWS_API_KEY = '59405fbcac10444f86caf44b1ac3e3d2'
+# Add you own API key, they are all for free on their wesites
+GOOGLE_API_KEY = ''
+NEWS_API_KEY = ''
 
 import requests
 import google.generativeai as genai
