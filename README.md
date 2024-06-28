@@ -18,6 +18,7 @@ To run this application, you need two API keys. As a standard best practice, the
 
 ## Configuration:
 Change the sum.py of the project and add your API keys:
+
     ```sh
     NEWS_API_KEY=your_news_api_key
     GEMINI_API_KEY=your_gemini_api_key
